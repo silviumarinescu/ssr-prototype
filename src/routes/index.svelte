@@ -1,22 +1,23 @@
 <script>
-  console.log("aaaa");
-//   fetch("https://random-number-generator1.p.rapidapi.com/", {
-//     method: "POST",
-//     headers: {
-//       "x-rapidapi-host": "random-number-generator1.p.rapidapi.com",
-//       "x-rapidapi-key": "7f67c32095mshe15fe37f0ed1934p1d570djsnafbee9a08226",
-//       "content-type": "application/x-www-form-urlencoded"
-//     },
-//     body: {
-//       num: "10"
-//     }
-//   })
-//     .then(response => {
-//       console.log(response);
-//     })
-//     .catch(err => {
-//       console.log(err);
-//     });
+  //   const fetch = process.browser ? window.fetch : require("node-fetch").default;
+  //   fetch("https://random-number-generator1.p.rapidapi.com/", {
+  //     method: "POST",
+  //     headers: {
+  //       "x-rapidapi-host": "random-number-generator1.p.rapidapi.com",
+  //       "x-rapidapi-key": "7f67c32095mshe15fe37f0ed1934p1d570djsnafbee9a08226",
+  //       "content-type": "application/x-www-form-urlencoded"
+  //     },
+  //     body: {
+  //       num: "10"
+  //     }
+  //   })
+  //     .then(response => {
+  //       console.log(response);
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
+  const nr = Math.floor(Math.random() * 10 + 1);
 </script>
 
 <style>
@@ -68,6 +69,6 @@
 
 <p>
   <strong>
-    Try editing this file (src/routes/index.svelte) to tessdft live reloading.
+    Try editing this file (src/routes/index.svelte) {nr} to tessdft live reloading.
   </strong>
 </p>
