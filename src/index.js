@@ -4,9 +4,9 @@ const app = express();
 app.get("/", async (req, res) => {
   try {
     const renderer = require("vue-server-renderer").createRenderer({
-      template: require("fs").readFileSync("../static/index.html", "utf-8"),
+      template: require("fs").readFileSync(__dirname + "/index.html", "utf-8"),
     });
-    const app = require("../static/vue.js");
+    const app = require(__dirname + "/vue.js");
 
     const data = {
       title: "Vue SSR Tutorial aaaaaaaa" + Math.random(),
@@ -21,7 +21,7 @@ app.get("/", async (req, res) => {
       res.send(html);
     });
   } catch (err) {
-    res.send(__dirname + 'aaaaaaaaa');
+    res.send(__dirname + "aaaaaaaaa");
   }
 });
 
