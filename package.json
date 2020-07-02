@@ -3,10 +3,9 @@
   "description": "ssr prototype",
   "version": "0.0.1",
   "scripts": {
-    "deploy": "npx vercel",
-    "dev": "npx vercel dev",
-    "build": "npx vue-cli-service build",
-    "dd": "npx vue-cli-service dev"
+    "start": "cross-env NODE_ENV=test webpack-dev-server --open",
+    "deploy:v": "npx vercel",
+    "dev:v": "npx vercel dev"
   },
   "engines": {
     "node": "12.x"
@@ -17,6 +16,13 @@
     "vue-server-renderer": "^2.6.11"
   },
   "devDependencies": {
+    "cross-env": "^7.0.2",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0",
+    "html-webpack-plugin": "^4.3.0",
+    "html-loader": "^1.1.0",
+    "favicons-webpack-plugin": "^3.0.1",
     "vue-loader": "^15.9.3",
     "vue-template-compiler": "^2.6.11"
   }
