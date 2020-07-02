@@ -1,10 +1,11 @@
-import resolve from '@rollup/plugin-node-resolve';
-import replace from '@rollup/plugin-replace';
-import commonjs from '@rollup/plugin-commonjs';
+import resolve from 'rollup-plugin-node-resolve';
+import replace from 'rollup-plugin-replace';
+import commonjs from 'rollup-plugin-commonjs';
 import svelte from 'rollup-plugin-svelte';
-import babel from '@rollup/plugin-babel';
+import babel from 'rollup-plugin-babel';
 import { terser } from 'rollup-plugin-terser';
 import config from 'sapper/config/rollup.js';
+import json from 'rollup-plugin-json';
 import pkg from './package.json';
 
 const mode = process.env.NODE_ENV;
@@ -12,6 +13,7 @@ const dev = mode === 'development';
 const legacy = !!process.env.SAPPER_LEGACY_BUILD;
 
 const onwarn = (warning, onwarn) => (warning.code === 'CIRCULAR_DEPENDENCY' && /[/\\]@sapper[/\\]/.test(warning.message)) || onwarn(warning);
+const dedupe = importee => importee === 'svelte' || importee.startsWith('svelte/');
 
 export default {
 	client: {
@@ -21,7 +23,8 @@ export default {
 			replace({
 				'process.browser': true,
 				'process.env.NODE_ENV': JSON.stringify(mode)
-			}),
+      }),
+      json(),
 			svelte({
 				dev,
 				hydratable: true,
@@ -29,13 +32,13 @@ export default {
 			}),
 			resolve({
 				browser: true,
-				dedupe: ['svelte']
+				dedupe
 			}),
 			commonjs(),
 
 			legacy && babel({
 				extensions: ['.js', '.mjs', '.html', '.svelte'],
-				babelHelpers: 'runtime',
+				runtimeHelpers: true,
 				exclude: ['node_modules/@babel/**'],
 				presets: [
 					['@babel/preset-env', {
@@ -55,7 +58,6 @@ export default {
 			})
 		],
 
-		preserveEntrySignatures: false,
 		onwarn,
 	},
 
@@ -66,13 +68,14 @@ export default {
 			replace({
 				'process.browser': false,
 				'process.env.NODE_ENV': JSON.stringify(mode)
-			}),
+      }),
+      json(),
 			svelte({
 				generate: 'ssr',
 				dev
 			}),
 			resolve({
-				dedupe: ['svelte']
+				dedupe
 			}),
 			commonjs()
 		],
@@ -80,7 +83,6 @@ export default {
 			require('module').builtinModules || Object.keys(process.binding('natives'))
 		),
 
-		preserveEntrySignatures: 'strict',
 		onwarn,
 	},
 
@@ -97,7 +99,6 @@ export default {
 			!dev && terser()
 		],
 
-		preserveEntrySignatures: false,
 		onwarn,
 	}
 };
