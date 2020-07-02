@@ -6,5 +6,11 @@
       "use": "@vercel/node"
     }
   ],
-  "routes": [{ "src": "/(.*)", "dest": "src/index.js" }]
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "src/index.js",
+      "headers": { "cache-control": "s-maxage=10, stale-while-revalidate" }
+    }
+  ]
 }
