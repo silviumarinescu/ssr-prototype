@@ -20,13 +20,10 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
     }),
     new HtmlWebpackPlugin({
-      title: "ssr",
-      meta: {
-        viewport: "width=device-width, initial-scale=1, shrink-to-fit=no",
-      },
+      template: "./static/index.html",
     }),
     new FaviconsWebpackPlugin({
       logo: "./static/favicon.svg",
@@ -49,4 +46,9 @@ module.exports = {
     }),
     new VueLoaderPlugin(),
   ],
+  resolve: {
+    alias: {
+      vue: "vue/dist/vue.js",
+    },
+  },
 };
