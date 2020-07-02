@@ -3,7 +3,10 @@
   "description": "ssr prototype",
   "version": "0.0.1",
   "scripts": {
-    "deploy": "npx vercel"
+    "deploy": "npx vercel",
+    "dev": "npx vercel dev",
+    "build": "npx vue-cli-service build",
+    "dd": "npx vue-cli-service dev"
   },
   "engines": {
     "node": "12.x"
@@ -13,5 +16,8 @@
     "vue": "^2.6.11",
     "vue-server-renderer": "^2.6.11"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "vue-loader": "^15.9.3",
+    "vue-template-compiler": "^2.6.11"
+  }
 }
