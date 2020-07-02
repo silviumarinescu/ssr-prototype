@@ -3,8 +3,7 @@
   "description": "ssr prototype",
   "version": "0.0.1",
   "scripts": {
-    "test": "npx vercel",
-    "publish": "npx vercel"
+    "deploy": "npx vercel"
   },
   "engines": {
     "node": "12.x"
