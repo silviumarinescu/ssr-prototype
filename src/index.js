@@ -6,11 +6,11 @@ app.get("/", async (req, res) => {
     const renderer = require("vue-server-renderer").createRenderer({
       template: require("fs").readFileSync(__dirname + "/index.html", "utf-8"),
     });
-    const app = require(__dirname + "/vue.js");
-
     const data = {
-      title: "Vue SSR Tutorial aaaaaaaa" + Math.random(),
+      title: "Vue SSR Tutorial",
+      name: "aaaa" + Math.random(),
     };
+    const app = require(__dirname + "/vue.js")(data);
 
     renderer.renderToString(app, data, (err, html) => {
       if (err) {
