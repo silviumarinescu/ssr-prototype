@@ -1,27 +1,22 @@
 <template>
-  <div id="app">
+  <div class="container">
     <img src="./assets/logo.png">
-    <h1>{{ msg }}</h1>
+    <Test-Component></Test-Component>
   </div>
 </template>
 
 <script>
+import TestComponent from './TestComponent.vue';
+import Vue from 'vue'
 export default {
-  name: 'app',
-  data () {
-    return {
-      msg: 'Welcome to Youraaa Vue.js App'
-    }
-  },
-  created: function () {
-    // `this` points to the vm instance
-    console.log('here')
+  components: {
+    'Test-Component': TestComponent
   }
 }
 </script>
 
 <style lang="scss">
-#app {
+.container {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
