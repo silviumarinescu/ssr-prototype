@@ -27,7 +27,7 @@ app.use("/dist", express.static(__dirname + "/dist"));
 // Render all other routes with the bundleRenderer.
 app.get("*", async (req, res) => {
   // res.send("aaaaaaaaaa ok");
-
+  res.set("Cache-Control", "s-maxage=10, stale-while-revalidate");
   if (req.path == "/") {
     const db = require("./src/server-database.js").default;
     const firebase = require("firebase-admin");
