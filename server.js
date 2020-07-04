@@ -28,17 +28,18 @@ app.use("/dist", express.static(__dirname + "/dist"));
 app.get("*", async (req, res) => {
   // res.send("aaaaaaaaaa ok");
 
-  const db = require("./src/server-database.js").dafeault;
-  const firebase = require("firebase-admin");
+  if (req.path == "/") {
+    const db = require("./src/server-database.js").default;
+    const firebase = require("firebase-admin");
 
-  const increment = firebase.firestore.FieldValue.increment(1);
-  await db.doc(`analytics/pageViews`).set(
-    {
-      totalServer: increment
-    },
-    { merge: true }
-  );
-
+    const increment = firebase.firestore.FieldValue.increment(1);
+    await db.doc(`analytics/pageViews`).set(
+      {
+        totalServer: increment
+      },
+      { merge: true }
+    );
+  }
   bundleRenderer
     // Renders directly to the response stream.
     // The argument is passed as "context" to main.server.js in the SSR bundle.
