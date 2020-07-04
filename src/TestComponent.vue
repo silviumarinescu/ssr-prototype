@@ -5,8 +5,6 @@
   </div>
 </template>
 <script>
-import db from "./client-database.js"
-import firebase from 'firebase/app';
 
 export default {
   name: 'Test-Component',
@@ -16,7 +14,9 @@ export default {
       totalServer: 'loading...'
     }
   },
-  created() {    
+  mounted() {    
+    const db = require("./client-database.js").default;
+    const firebase = require('firebase/app');
     const increment = firebase.firestore.FieldValue.increment(1);
     db.doc(`analytics/pageViews`).set(
       {
